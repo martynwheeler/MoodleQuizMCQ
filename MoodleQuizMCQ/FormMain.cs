@@ -13,7 +13,7 @@ namespace MoodleQuizMCQ
 {
     public partial class FormMain : Form
     {
-        public DataTable Datatable { get; set; } = new DataTable();
+        private readonly DataTable Datatable = new();
         private bool unsavedQuestions = false;
         private string currentFileName;
         private FormWindowState savedWindowState;
@@ -480,7 +480,7 @@ namespace MoodleQuizMCQ
             }
         }
 
-        private void saveTreeViewToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SaveTreeViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (this.tabControlSubject.SelectedTab == this.tabControlSubject.TabPages["tabPageGCSE"])
             {
@@ -546,6 +546,8 @@ namespace MoodleQuizMCQ
                     // If the no button was pressed ...
                     if (dialogResult == DialogResult.No)
                     {
+                        Datatable.Clear();
+                        unsavedQuestions = false;
                         currentFileName = files[0];
                         //LoadQuestionsFromCSV();
                         LoadQuestionsFromXML(currentFileName);
@@ -647,24 +649,26 @@ namespace MoodleQuizMCQ
 
                 if (selectedRowIndex < dataGridViewQuestions.RowCount - 1)
                 {
-                    DataRow dataRow = Datatable.Rows[selectedRowIndex];
+                    //Datarow is the selected item
+                    DataRow dataRow = ((DataRowView)dataGridViewQuestions.SelectedRows[0].DataBoundItem).Row;
+//                    DataRow dataRow = Datatable.Rows[selectedRowIndex];
 
                     //stop monitoring clipboard
                     sharpClipboard1.MonitorClipboard = false;
 
                     //create instance of form
-                    using (FormEditQuestion formViewQuestionImage = new())
+                    using (FormEditQuestion formEditQuestion = new())
                     {
                         //pass the selected row from datatable to the form
-                        formViewQuestionImage.QuestionRow = dataRow;
+                        formEditQuestion.QuestionRow = dataRow;
 
                         //create a datatable of the current treeview
-                        formViewQuestionImage.QuestionSubject = TreeViewtoSubject(treeViewALevel);
+                        formEditQuestion.QuestionSubject = TreeViewtoSubject(treeViewALevel);
 
                         //show the form
-                        if (formViewQuestionImage.ShowDialog(this) == DialogResult.OK)
+                        if (formEditQuestion.ShowDialog(this) == DialogResult.OK)
                         {
-                            if (formViewQuestionImage.QuestionDataChanged)
+                            if (formEditQuestion.QuestionDataChanged)
                             {
                                 unsavedQuestions = true;
                                 if (currentFileName != null)

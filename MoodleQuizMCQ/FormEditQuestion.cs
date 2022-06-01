@@ -82,7 +82,8 @@ namespace MoodleQuizMCQ
                 {
                     dgv.ClearSelection();
                     dgv.Rows[newIndex].Selected = true;
-                    QuestionRow = ((FormMain)this.Owner).Datatable.Rows[newIndex];
+                    QuestionRow = ((DataRowView)dgv.SelectedRows[0].DataBoundItem).Row;
+//                    QuestionRow = ((FormMain)this.Owner).Datatable.Rows[newIndex];
                     UpdateFormData();
                 }
             }
@@ -106,7 +107,8 @@ namespace MoodleQuizMCQ
                 {
                     dgv.ClearSelection();
                     dgv.Rows[newIndex].Selected = true;
-                    QuestionRow = ((FormMain)this.Owner).Datatable.Rows[newIndex];
+                    QuestionRow = ((DataRowView)dgv.SelectedRows[0].DataBoundItem).Row;
+//                    QuestionRow = ((FormMain)this.Owner).Datatable.Rows[newIndex];
                     UpdateFormData();
                 }
             }

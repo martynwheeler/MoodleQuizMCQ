@@ -225,37 +225,37 @@
             // addcatToolStripMenuItem
             // 
             this.addcatToolStripMenuItem.Name = "addcatToolStripMenuItem";
-            this.addcatToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addcatToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.addcatToolStripMenuItem.Text = "Add &Category";
             this.addcatToolStripMenuItem.Click += new System.EventHandler(this.AddcatToolStripMenuItem_Click);
             // 
             // addsubcatToolStripMenuItem
             // 
             this.addsubcatToolStripMenuItem.Name = "addsubcatToolStripMenuItem";
-            this.addsubcatToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addsubcatToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.addsubcatToolStripMenuItem.Text = "Add &Subcategory";
             this.addsubcatToolStripMenuItem.Click += new System.EventHandler(this.AddsubcatToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.deleteToolStripMenuItem.Text = "Delete S&elected";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
             // 
             // saveTreeViewToolStripMenuItem
             // 
             this.saveTreeViewToolStripMenuItem.Name = "saveTreeViewToolStripMenuItem";
-            this.saveTreeViewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveTreeViewToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.saveTreeViewToolStripMenuItem.Text = "&Save";
             this.saveTreeViewToolStripMenuItem.Visible = false;
-            this.saveTreeViewToolStripMenuItem.Click += new System.EventHandler(this.saveTreeViewToolStripMenuItem_Click);
+            this.saveTreeViewToolStripMenuItem.Click += new System.EventHandler(this.SaveTreeViewToolStripMenuItem_Click);
             // 
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.Enabled = false;
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.optionsToolStripMenuItem.Text = "&Options";
             this.optionsToolStripMenuItem.Visible = false;
             // 
@@ -330,6 +330,7 @@
             this.dataGridViewQuestions.Location = new System.Drawing.Point(4, 3);
             this.dataGridViewQuestions.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dataGridViewQuestions.Name = "dataGridViewQuestions";
+            this.dataGridViewQuestions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewQuestions.Size = new System.Drawing.Size(1685, 612);
             this.dataGridViewQuestions.TabIndex = 0;
             this.dataGridViewQuestions.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridViewQuestions_RowHeaderMouseDoubleClick);
