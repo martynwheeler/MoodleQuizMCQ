@@ -480,6 +480,32 @@ namespace MoodleQuizMCQ
             }
         }
 
+        private void saveTreeViewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.tabControlSubject.SelectedTab == this.tabControlSubject.TabPages["tabPageGCSE"])
+            {
+                try
+                {
+                    SaveTreeView(this.treeViewGCSE, Application.StartupPath + "\\GCSECategories.xml");
+                }
+                catch
+                {
+                    MessageBox.Show("Error", FormMain.ActiveForm.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                try
+                {
+                    SaveTreeView(this.treeViewALevel, Application.StartupPath + "\\ALevelCategories.xml");
+                }
+                catch
+                {
+                    MessageBox.Show("Error", FormMain.ActiveForm.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using FormAbout aboutForm = new();
@@ -740,9 +766,6 @@ namespace MoodleQuizMCQ
             XmlWriterSettings settings = new()
             {
                 Indent = true,
-                IndentChars = ("\t"),
-                OmitXmlDeclaration = false,
-                Encoding = Encoding.UTF8,
             };
 
             // Create the XmlWriter object and write some content.
