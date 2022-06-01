@@ -263,7 +263,7 @@
             this.Name = "FormViewQuestionImage";
             this.ShowIcon = false;
             this.Text = "Question Image Viewer";
-            this.Load += new System.EventHandler(this.FormViewQuestionImage_Load);
+            this.Load += new System.EventHandler(this.FormEditQuestion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

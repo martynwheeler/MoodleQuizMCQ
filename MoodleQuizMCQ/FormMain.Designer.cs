@@ -46,6 +46,7 @@
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addcatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addsubcatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editSelectedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveTreeViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -215,6 +216,7 @@
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addcatToolStripMenuItem,
             this.addsubcatToolStripMenuItem,
+            this.editSelectedToolStripMenuItem,
             this.deleteToolStripMenuItem,
             this.saveTreeViewToolStripMenuItem,
             this.optionsToolStripMenuItem});
@@ -235,6 +237,13 @@
             this.addsubcatToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.addsubcatToolStripMenuItem.Text = "Add &Subcategory";
             this.addsubcatToolStripMenuItem.Click += new System.EventHandler(this.AddsubcatToolStripMenuItem_Click);
+            // 
+            // editSelectedToolStripMenuItem
+            // 
+            this.editSelectedToolStripMenuItem.Name = "editSelectedToolStripMenuItem";
+            this.editSelectedToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.editSelectedToolStripMenuItem.Text = "&Edit Selected";
+            this.editSelectedToolStripMenuItem.Click += new System.EventHandler(this.EditSelectedToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
@@ -280,7 +289,7 @@
             this.viewSelectedQuestionImageToolStripMenuItem.Name = "viewSelectedQuestionImageToolStripMenuItem";
             this.viewSelectedQuestionImageToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
             this.viewSelectedQuestionImageToolStripMenuItem.Text = "&Edit Selected Question";
-            this.viewSelectedQuestionImageToolStripMenuItem.Click += new System.EventHandler(this.ViewSelectedQuestionImageToolStripMenuItem_Click);
+            this.viewSelectedQuestionImageToolStripMenuItem.Click += new System.EventHandler(this.EditSelectedQuestionToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -568,6 +577,7 @@
             this.treeViewGCSE.Name = "treeViewGCSE";
             this.treeViewGCSE.Size = new System.Drawing.Size(1064, 578);
             this.treeViewGCSE.TabIndex = 0;
+            this.treeViewGCSE.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.TreeView_NodeMouseDoubleClick);
             // 
             // tabPageALevel
             // 
@@ -590,6 +600,7 @@
             this.treeViewALevel.Name = "treeViewALevel";
             this.treeViewALevel.Size = new System.Drawing.Size(1064, 578);
             this.treeViewALevel.TabIndex = 0;
+            this.treeViewALevel.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.TreeView_NodeMouseDoubleClick);
             // 
             // tabControlMain
             // 
@@ -711,6 +722,7 @@
         private System.Windows.Forms.ToolStripMenuItem viewSelectedQuestionImageToolStripMenuItem;
         private WK.Libraries.SharpClipboardNS.SharpClipboard sharpClipboard1;
         private ToolStripMenuItem saveTreeViewToolStripMenuItem;
+        private ToolStripMenuItem editSelectedToolStripMenuItem;
     }
 }
 

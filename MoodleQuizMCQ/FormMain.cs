@@ -480,6 +480,15 @@ namespace MoodleQuizMCQ
             }
         }
 
+        private void EditSelectedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EditNode();
+        }
+        private void TreeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            EditNode();
+        }
+
         private void SaveTreeViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (this.tabControlSubject.SelectedTab == this.tabControlSubject.TabPages["tabPageGCSE"])
@@ -585,9 +594,9 @@ namespace MoodleQuizMCQ
             */
         }
 
-        private void ViewSelectedQuestionImageToolStripMenuItem_Click(object sender, EventArgs e)
+        private void EditSelectedQuestionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ViewSelectedQuestionImage();
+            ViewSelectedQuestion();
         }
 
         private void TabControlMain_SelectedIndexChanged(object sender, EventArgs e)
@@ -606,7 +615,7 @@ namespace MoodleQuizMCQ
 
         private void DataGridViewQuestions_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            ViewSelectedQuestionImage();
+            ViewSelectedQuestion();
         }
 
         private void SharpClipboard1_ClipboardChanged(object sender, WK.Libraries.SharpClipboardNS.SharpClipboard.ClipboardChangedEventArgs e)
@@ -641,7 +650,7 @@ namespace MoodleQuizMCQ
             txtQuestionName.Text = txtExamPaperName.Text + " q" + fileNumber;
         }
 
-        private void ViewSelectedQuestionImage()
+        private void ViewSelectedQuestion()
         {
             if (dataGridViewQuestions.SelectedRows.Count == 1)
             {
@@ -1078,6 +1087,34 @@ namespace MoodleQuizMCQ
             {
                 MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
+            }
+        }
+
+        private void EditNode()
+        {
+            using FormEditNode editNodeForm = new();
+            if (this.tabControlSubject.SelectedTab == this.tabControlSubject.TabPages["tabPageGCSE"])
+            {
+                editNodeForm.EditCategory = treeViewGCSE.SelectedNode.Text;
+            }
+            else
+            {
+                editNodeForm.EditCategory = treeViewALevel.SelectedNode.Text;
+            }
+
+            //show the form
+            if (editNodeForm.ShowDialog() == DialogResult.OK)
+            {
+                if (this.tabControlSubject.SelectedTab == this.tabControlSubject.TabPages["tabPageGCSE"])
+                {
+                    treeViewGCSE.SelectedNode.Text = editNodeForm.EditCategory;
+                    SaveTreeView(this.treeViewGCSE, Application.StartupPath + "\\GCSECategories.xml");
+                }
+                else
+                {
+                    treeViewALevel.SelectedNode.Text = editNodeForm.EditCategory;
+                    SaveTreeView(this.treeViewALevel, Application.StartupPath + "\\ALevelCategories.xml");
+                }
             }
         }
 

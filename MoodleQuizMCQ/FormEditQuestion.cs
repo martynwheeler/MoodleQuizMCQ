@@ -20,7 +20,7 @@ namespace MoodleQuizMCQ
             InitializeComponent();
         }
 
-        private void FormViewQuestionImage_Load(object sender, EventArgs e)
+        private void FormEditQuestion_Load(object sender, EventArgs e)
         {
             //load items into topic combobox
             foreach (SubjectTopic topic in QuestionSubject.Items)
@@ -148,6 +148,21 @@ namespace MoodleQuizMCQ
             QuestionRow["Question Image"] = ClassUtils.ImageToByte(pictureBoxImage.Image);
             QuestionRow["Question Answer"] = comboBoxAnswer.Text;
             hasChanged = false;
+/*
+            DataGridView dgv = (DataGridView)this.Owner.Controls["tabControlMain"].Controls["tabPageQuestionData"].Controls["dataGridViewQuestions"];
+            if (dgv.SelectedRows.Count == 1)
+            {
+                int newIndex = dgv.SelectedRows[0].Index + 1;
+                if (newIndex < dgv.Rows.Count - 1)
+                {
+                    dgv.ClearSelection();
+                    dgv.Rows[newIndex].Selected = true;
+                    QuestionRow = ((DataRowView)dgv.SelectedRows[0].DataBoundItem).Row;
+                    //                    QuestionRow = ((FormMain)this.Owner).Datatable.Rows[newIndex];
+                    UpdateFormData();
+                }
+            }
+*/
         }
 
         private void UpdateFormData()

@@ -1,17 +1,16 @@
 ﻿namespace MoodleQuizMCQ
 {
-    public partial class FormAddCategory : Form
+    public partial class FormEditNode : Form
     {
-        public string NewCategory { get; set; } = string.Empty;
+        public string EditCategory { get; set; } = string.Empty;
 
-        public FormAddCategory()
+        public FormEditNode()
         {
             InitializeComponent();
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)
         {
-            NewCategory = "";
             this.Close();
         }
 
@@ -19,9 +18,15 @@
         {
             if (txtCategory.Text != "")
             {
-                NewCategory = txtCategory.Text;
+                EditCategory = txtCategory.Text;
+                DialogResult = DialogResult.OK;
                 this.Close();
             }
+        }
+
+        private void FormEditNode_Load(object sender, EventArgs e)
+        {
+            txtCategory.Text = EditCategory;
         }
     }
 }
