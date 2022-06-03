@@ -655,12 +655,14 @@ namespace MoodleQuizMCQ
         {
             if (dataGridViewQuestions.SelectedRows.Count == 1)
             {
-                int selectedRowIndex = dataGridViewQuestions.SelectedRows[0].Index;
+//                int selectedRowIndex = dataGridViewQuestions.SelectedRows[0].Index;
+                int selectedRowIndex = dataGridViewQuestions.CurrentRow.Index;
 
                 if (selectedRowIndex < dataGridViewQuestions.RowCount - 1)
                 {
                     //Datarow is the selected item
-                    DataRow dataRow = ((DataRowView)dataGridViewQuestions.SelectedRows[0].DataBoundItem).Row;
+                    DataRow dataRow = ((DataRowView)dataGridViewQuestions.CurrentRow.DataBoundItem).Row;
+//                    DataRow dataRow = ((DataRowView)dataGridViewQuestions.SelectedRows[0].DataBoundItem).Row;
 //                    DataRow dataRow = Datatable.Rows[selectedRowIndex];
 
                     //stop monitoring clipboard
@@ -697,7 +699,6 @@ namespace MoodleQuizMCQ
 
                     //start monitoring clipboard
                     sharpClipboard1.MonitorClipboard = true;
-
                 }
             }
             else

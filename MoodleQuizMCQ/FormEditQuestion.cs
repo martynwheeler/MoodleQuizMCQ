@@ -75,17 +75,16 @@ namespace MoodleQuizMCQ
             }
             
             DataGridView dgv = (DataGridView)this.Owner.Controls["tabControlMain"].Controls["tabPageQuestionData"].Controls["dataGridViewQuestions"];
-            if (dgv.SelectedRows.Count == 1)
+//            int newIndex = dgv.SelectedRows[0].Index + 1;
+            int newIndex = dgv.CurrentRow.Index + 1;
+            if (newIndex < dgv.Rows.Count - 1)
             {
-                int newIndex = dgv.SelectedRows[0].Index + 1;
-                if (newIndex < dgv.Rows.Count - 1)
-                {
-                    dgv.ClearSelection();
-                    dgv.Rows[newIndex].Selected = true;
-                    QuestionRow = ((DataRowView)dgv.SelectedRows[0].DataBoundItem).Row;
-//                    QuestionRow = ((FormMain)this.Owner).Datatable.Rows[newIndex];
-                    UpdateFormData();
-                }
+                dgv.CurrentCell = dgv.Rows[newIndex].Cells[0];
+//                QuestionRow = ((DataRowView)dgv.SelectedRows[0].DataBoundItem).Row;
+                QuestionRow = ((DataRowView)dgv.CurrentRow.DataBoundItem).Row;
+                dgv.ClearSelection();
+                dgv.CurrentRow.Selected = true;
+                UpdateFormData();
             }
         }
 
@@ -100,17 +99,16 @@ namespace MoodleQuizMCQ
             }
 
             DataGridView dgv = (DataGridView)this.Owner.Controls["tabControlMain"].Controls["tabPageQuestionData"].Controls["dataGridViewQuestions"];
-            if (dgv.SelectedRows.Count == 1)
+//            int newIndex = dgv.SelectedRows[0].Index - 1;
+            int newIndex = dgv.CurrentRow.Index - 1;
+            if (newIndex >= 0)
             {
-                int newIndex = dgv.SelectedRows[0].Index - 1;
-                if (newIndex >= 0)
-                {
-                    dgv.ClearSelection();
-                    dgv.Rows[newIndex].Selected = true;
-                    QuestionRow = ((DataRowView)dgv.SelectedRows[0].DataBoundItem).Row;
-//                    QuestionRow = ((FormMain)this.Owner).Datatable.Rows[newIndex];
-                    UpdateFormData();
-                }
+                dgv.CurrentCell = dgv.Rows[newIndex].Cells[0];
+//                QuestionRow = ((DataRowView)dgv.SelectedRows[0].DataBoundItem).Row;
+                QuestionRow = ((DataRowView)dgv.CurrentRow.DataBoundItem).Row;
+                dgv.ClearSelection();
+                dgv.CurrentRow.Selected = true;
+                UpdateFormData();
             }
         }
 
@@ -136,20 +134,20 @@ namespace MoodleQuizMCQ
 
         private void ButtonUpdateQuestion_Click(object sender, EventArgs e)
         {
+            DataGridView dgv = (DataGridView)this.Owner.Controls["tabControlMain"].Controls["tabPageQuestionData"].Controls["dataGridViewQuestions"];
+            int newIndex = dgv.CurrentRow.Index;
             UpdateQuestion();
+            dgv.CurrentCell = dgv.Rows[newIndex].Cells[0];
+            QuestionRow = ((DataRowView)dgv.CurrentRow.DataBoundItem).Row;
+            dgv.ClearSelection();
+            dgv.CurrentRow.Selected = true;
+            UpdateFormData();
         }
 
         private void ButtonDeleteQuestion_Click(object sender, EventArgs e)
         {
             DataGridView dgv = (DataGridView)this.Owner.Controls["tabControlMain"].Controls["tabPageQuestionData"].Controls["dataGridViewQuestions"];
-            foreach (DataGridViewRow row in dgv.SelectedRows)
-            {
-                if (row.Index < dgv.RowCount - 1)
-                {
-                    dgv.Rows.RemoveAt(row.Index);
-                    QuestionDataChanged = true;
-                }
-            }
+            dgv.Rows.RemoveAt(dgv.CurrentRow.Index);
         }
 
         private void UpdateQuestion()
