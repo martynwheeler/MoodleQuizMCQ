@@ -139,6 +139,19 @@ namespace MoodleQuizMCQ
             UpdateQuestion();
         }
 
+        private void ButtonDeleteQuestion_Click(object sender, EventArgs e)
+        {
+            DataGridView dgv = (DataGridView)this.Owner.Controls["tabControlMain"].Controls["tabPageQuestionData"].Controls["dataGridViewQuestions"];
+            foreach (DataGridViewRow row in dgv.SelectedRows)
+            {
+                if (row.Index < dgv.RowCount - 1)
+                {
+                    dgv.Rows.RemoveAt(row.Index);
+                    QuestionDataChanged = true;
+                }
+            }
+        }
+
         private void UpdateQuestion()
         {
             //update datarow
@@ -148,21 +161,7 @@ namespace MoodleQuizMCQ
             QuestionRow["Question Image"] = ClassUtils.ImageToByte(pictureBoxImage.Image);
             QuestionRow["Question Answer"] = comboBoxAnswer.Text;
             hasChanged = false;
-/*
-            DataGridView dgv = (DataGridView)this.Owner.Controls["tabControlMain"].Controls["tabPageQuestionData"].Controls["dataGridViewQuestions"];
-            if (dgv.SelectedRows.Count == 1)
-            {
-                int newIndex = dgv.SelectedRows[0].Index + 1;
-                if (newIndex < dgv.Rows.Count - 1)
-                {
-                    dgv.ClearSelection();
-                    dgv.Rows[newIndex].Selected = true;
-                    QuestionRow = ((DataRowView)dgv.SelectedRows[0].DataBoundItem).Row;
-                    //                    QuestionRow = ((FormMain)this.Owner).Datatable.Rows[newIndex];
-                    UpdateFormData();
-                }
-            }
-*/
+            UpdateFormData();
         }
 
         private void UpdateFormData()

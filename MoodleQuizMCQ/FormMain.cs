@@ -484,6 +484,7 @@ namespace MoodleQuizMCQ
         {
             EditNode();
         }
+
         private void TreeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             EditNode();
